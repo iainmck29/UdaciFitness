@@ -4303,7 +4303,7 @@
   dependencies:
     "source-map" "^0.7.3"
 
-"hoist-non-react-statics@^3.3.0", "hoist-non-react-statics@^3.3.2":
+"hoist-non-react-statics@^3.3.0", "hoist-non-react-statics@^3.3.1", "hoist-non-react-statics@^3.3.2":
   "integrity" "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw=="
   "resolved" "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz"
   "version" "3.3.2"
@@ -4385,6 +4385,11 @@
   "integrity" "sha512-HR7EVodfFUdQCTIeySw+WDRFJlPcLOJbXfwwZ7Oom6tjsvZ3bOkCDJHehQC3nxJrv7+f9XecwazynjU8e4Vw3Q=="
   "resolved" "https://registry.yarnpkg.com/immediate/-/immediate-3.3.0.tgz"
   "version" "3.3.0"
+
+"immutable@^4.0.0-rc.12":
+  "integrity" "sha512-0M2XxkZLx/mi3t8NVwIm1g8nHoEmM9p9UBl/G9k4+hm0kBgOVdMV/B3CY5dQ8qG8qc80NN4gDV4HQv6FTJ5q7A=="
+  "resolved" "https://registry.npmjs.org/immutable/-/immutable-4.0.0-rc.12.tgz"
+  "version" "4.0.0-rc.12"
 
 "import-fresh@^2.0.0":
   "integrity" "sha1-2BNVwVYS04bGH53dOSLUMEgipUY="
@@ -6138,6 +6143,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"moment@^2.24.0":
+  "integrity" "sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.1.tgz"
+  "version" "2.29.1"
+
 "ms@2.0.0":
   "integrity" "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
   "resolved" "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz"
@@ -6884,6 +6894,19 @@
   "resolved" "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
 
+"react-native-calendars@latest":
+  "integrity" "sha512-AQtV0MN40E0CZyV6tbPimXm/69pCYtPfjEilQ6U1z8CfaZBeuTvxkhc/aZPW1pcrtWym50ric04bFq0PV27egQ=="
+  "resolved" "https://registry.npmjs.org/react-native-calendars/-/react-native-calendars-1.1250.0.tgz"
+  "version" "1.1250.0"
+  dependencies:
+    "hoist-non-react-statics" "^3.3.1"
+    "immutable" "^4.0.0-rc.12"
+    "lodash" "^4.17.15"
+    "moment" "^2.24.0"
+    "prop-types" "^15.5.10"
+    "react-native-swipe-gestures" "^1.0.5"
+    "xdate" "^0.8.0"
+
 "react-native-gesture-handler@~1.8.0":
   "integrity" "sha512-E2FZa0qZ5Bi0Z8Jg4n9DaFomHvedSjwbO2DPmUUHYRy1lH2yxXUpSrqJd6yymu+Efzmjg2+JZzsjFYA2Iq8VEQ=="
   "resolved" "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.8.0.tgz"
@@ -6910,6 +6933,11 @@
   "integrity" "sha512-CagNf2APXkVoRlF3Mugr264FbKbrBg9eXUkqhIPVeZB8EsdS8XPrnt99yj/pzmT+yJMBY0dGrjXT8+68WYh6YQ=="
   "resolved" "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.2.tgz"
   "version" "2.15.2"
+
+"react-native-swipe-gestures@^1.0.5":
+  "integrity" "sha512-Ns7Bn9H/Tyw278+5SQx9oAblDZ7JixyzeOczcBK8dipQk2pD7Djkcfnf1nB/8RErAmMLL9iXgW0QHqiII8AhKw=="
+  "resolved" "https://registry.npmjs.org/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.5.tgz"
+  "version" "1.0.5"
 
 "react-native-unimodules@~0.12.0":
   "integrity" "sha512-/c1d3hr+3C3yIwhSoX+KTzy0+C9cnjUvenXP2uV8X2V3ZflnPB/HQXwZPHHWITmD89HP2n3NcPBTu4UgOv/KzQ=="
@@ -8099,7 +8127,7 @@
   "resolved" "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.24.tgz"
   "version" "0.7.24"
 
-"udacifitness-calendar@^10.0.0":
+"udacifitness-calendar@github:ftrevo/react-native-calendars#master":
   "resolved" "git+ssh://git@github.com/ftrevo/react-native-calendars.git#28bcd0da3591bd3da0580e8b9c3752897a33c81b"
   "version" "10.0.0"
   dependencies:
