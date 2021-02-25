@@ -62,7 +62,7 @@ class AddEntry extends React.Component {
 
     submit = () => {
         const key = timeToString()
-        const entry = this.state
+        const entry = [this.state]
 
         //Update Redux
         this.props.dispatch(addEntry({
@@ -78,6 +78,7 @@ class AddEntry extends React.Component {
         }))
 
         //Navigate to home
+        this.toHome()
 
         //Save to DB
         submitEntry({ key, entry })
@@ -95,9 +96,14 @@ class AddEntry extends React.Component {
         }))
 
         //Route to home
+        this.toHome()
 
         //Update "DB"
         removeEntry(key)
+    }
+
+    toHome = () => {
+        this.props.navigation.goBack()
     }
 
     render() {
@@ -198,7 +204,7 @@ function mapStateToProps(state) {
     const key = timeToString()
 
     return {
-        alreadyLogged: state[key] && typeof state[key].today === 'undefined'
+        alreadyLogged: state[key] && typeof state[key][0].today === 'undefined'
     }
 
 }
