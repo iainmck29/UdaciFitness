@@ -15,6 +15,7 @@ import UdaciSlider from './components/UdaciSlider';
 import UdaciSteppers from './components/UdaciSteppers';
 import EntryDetail from './components/EntryDetail'
 import Live from './components/Live'
+import { setLocalNotification } from './utils/helpers'
 
 
 
@@ -84,18 +85,24 @@ function StackNav() {
   )
 }
 
-export default function App() {
-  return (
-    <Provider store={createStore(reducer)}>
-      <View style={{ flex: 1 }} >
-        <UdaciStatusBar backgroundColor={purple} barStyle='light-content' />
-        <NavigationContainer>
-          <StackNav />
-        </NavigationContainer>
-      </View>
-    </Provider>
-  );
+export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  render() {
+    return (
+      <Provider store={createStore(reducer)}>
+        <View style={{ flex: 1 }} >
+          <UdaciStatusBar backgroundColor={purple} barStyle='light-content' />
+          <NavigationContainer>
+            <StackNav />
+          </NavigationContainer>
+        </View>
+      </Provider>
+    );
+  }
 }
+
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { Foundation } from '@expo/vector-icons'
 import { white, purple } from '../utils/colors'
 import * as Permissions from 'expo-permissions'
@@ -11,6 +11,7 @@ export default class Live extends React.Component {
         coords: null,
         status: null,
         direction: '',
+        bounceValue: new Animated.Value(1)
     }
 
     componentDidMount() {
@@ -36,7 +37,8 @@ export default class Live extends React.Component {
                     return this.setLocation()
                 }
 
-                this.setState(() => ({ status }))
+                this.setState(() => ({ status })
+                )
             })
             .catch((error) => console.warn('error asking location permissions ', error))
     }
@@ -46,20 +48,26 @@ export default class Live extends React.Component {
             enableHighAccuracy: true,
             timeInterval: 1,
             distanceInterval: 1,
-        }), ({ coords }) => {
+        }, ({ coords }) => { //remove right paranthesis from here
             const newDirection = calculateDirection(coords.heading)
-            const { direction } = this.state
+            const { direction, bounceValue } = this.state
 
+            if (newDirection !== direction) {
+                Animated.sequence([
+                    Animated.timing(bounceValue, { duration: 200, toValue: 1.04, useNativeDriver: true }),
+                    Animated.spring(bounceValue, { toValue: 1, friction: 4, useNativeDriver: true })
+                ]).start()
+            }
             this.setState(() => ({
                 coords,
                 status: 'granted',
-                direction: newDirection
+                direction: newDirection,
             }))
-        }
+        })
     }
 
     render() {
-        const { status, coords, direction } = this.state
+        const { status, coords, direction, bounceValue } = this.state
 
         if (status === null) {
             return <ActivityIndicator size='large' style={{ marginTop: 50 }} color="#0000ff" />
@@ -90,7 +98,7 @@ export default class Live extends React.Component {
             <View style={styles.container}>
                 <View style={styles.directionContainer}>
                     <Text style={styles.header}>You're heading</Text>
-                    <Text style={styles.direction}>NORTH</Text>
+                    <Animated.Text style={[styles.direction, { transform: [{ scale: bounceValue }] }]}>{direction}</Animated.Text>
                 </View>
                 <View style={styles.metricContainer}>
                     <View style={styles.metric}>
@@ -98,7 +106,7 @@ export default class Live extends React.Component {
                             Altitude
                         </Text>
                         <Text style={[styles.subHeader, { color: white }]}>
-                            {200} feet
+                            {Math.round(coords.altitude * 3.2808)} Feet
                         </Text>
                     </View>
                     <View style={styles.metric}>
@@ -106,7 +114,7 @@ export default class Live extends React.Component {
                             Speed
                         </Text>
                         <Text style={[styles.subHeader, { color: white }]}>
-                            {300} MPH
+                            {(coords.speed * 2.2369).toFixed(1)} MPH
                         </Text>
                     </View>
                 </View>
